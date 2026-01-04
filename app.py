@@ -120,12 +120,22 @@ def load_css(is_dark):
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }}
         
-        /* Custom Toggle Switch Styling (Hack) */
-        .stToggle label {{
-            color: {text_color} !important;
-            font-weight: bold;
+        /* Custom Toggle Switch Styling */
+        .stToggle {{
+            background-color: rgba(255, 255, 255, 0.4);
+            padding: 5px 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+            display: inline-flex;
+            justify-content: center;
         }}
         
+        .stToggle label, .stToggle p {{
+            color: black !important; /* Force Black Text */
+            font-weight: 800 !important;
+            font-size: 14px;
+        }}
+
         /* Force Radio Button Text to Black (User Request) */
         .stRadio label p {{
             color: black !important;
@@ -181,7 +191,7 @@ import streamlit.components.v1 as components
 
 def main():
     # Top Bar - Toggle
-    col_t1, col_t2 = st.columns([6, 1])
+    col_t1, col_t2 = st.columns([4, 1])
     with col_t2:
         st.toggle("Dark Mode", key="toggle_dark", value=st.session_state.dark_mode, on_change=toggle_theme)
 
@@ -192,7 +202,7 @@ def main():
         return
 
     st.title("🏥 Health Insurance Cost Estimator")
-    st.markdown("### AI-Powered Precision Pricing")
+    # st.markdown("### AI-Powered Precision Pricing") # Removed per user request
 
     with st.form("main_form"):
         col1, col2 = st.columns([1, 1], gap="medium")
